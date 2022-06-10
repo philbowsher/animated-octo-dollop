@@ -1,0 +1,44 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r setup}
+library(readr)
+library(ggplot2)
+library(magrittr)
+library(plotly)
+```
+
+
+
+# My Workflow
+
+Data Import
+```{r}
+
+adae <- read_csv("https://rhoinc.github.io/data-library/data/clinical-trials/adam/adae.csv")
+adae
+```
+
+Data Viz
+```{r}
+ggplot(adae) +
+  aes(x = SEX, fill = AESEV, weight = AGE) +
+  geom_bar() +
+  scale_fill_hue(direction = 1) +
+  theme_minimal()
+```
+
+Interactive Viz
+```{r}
+v1 <- ggplot(adae) +
+  aes(x = SEX, fill = AESEV, weight = AGE) +
+  geom_bar() +
+  scale_fill_hue(direction = 1) +
+  theme_minimal()
+
+ggplotly(v1)
+```
+
